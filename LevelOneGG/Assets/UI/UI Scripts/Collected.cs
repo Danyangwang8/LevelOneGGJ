@@ -5,7 +5,7 @@ using UnityEngine;
 public class Collected : MonoBehaviour
 {
     public int ggg = 0;
-    public string[] items_Collected = { "BCap", "Guitar", "GBottle" };
+    public string[] items_Collected = { "BCap", "Guitar", "GBottle", "BBox","SkateB","BBottle" };
     private Component ggl;
 
     // Start is called before the first frame update
