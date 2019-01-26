@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileTest : Tile
+public class ScriptedTile : Tile
 {
+    public enum TileContentType
+    {
+        Landmark,
+        Wall,
+        Pickup,
+        Hazard,
+        Nothing
+    }
+
+    //protected const ContentType m_contentType = ContentType.Nothing;
+
+    public TileContentType ContentType;
 
     public bool TileVisited = false;
-    [SerializeField] private TileContent m_content;
+    public TileContent m_content;
 
 
     public bool IsTileWalkable()
