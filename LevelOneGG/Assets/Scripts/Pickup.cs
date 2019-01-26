@@ -6,7 +6,7 @@ public class Pickup : MonoBehaviour
 {
 
     public float Value = 5;
-    // Start is called before the first frame update
+    
     private void Awake()
     {
         //ContentType = TileContentType.Pickup;
@@ -20,5 +20,10 @@ public class Pickup : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PickupObject()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -8,7 +8,7 @@ public class BaseTileData : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D m_collider;
     [SerializeField] private GameObject m_wallObject;
-    [SerializeField] private GameObject m_pickupObject;
+    [SerializeField] private Pickup m_pickupObject;
 
     public enum TileContentType
     {
@@ -24,6 +24,14 @@ public class BaseTileData : MonoBehaviour
     public TileContentType ContentType;
 
     public bool TileVisited = false;
+
+    public Pickup PickupObject
+    {
+        get
+        {
+            return m_pickupObject;
+        }
+    }
 
     public void Start()
     {
@@ -69,6 +77,10 @@ public class BaseTileData : MonoBehaviour
             return;
         }
         TileVisited = true;
+        if (m_pickupObject.gameObject.activeSelf)
+        {
+            m_pickupObject.PickupObject();
+        }
         Debug.Log("Tile visited");
     }
 
@@ -78,9 +90,12 @@ public class BaseTileData : MonoBehaviour
             !TileVisited)
         {
             m_wallObject.SetActive(true);
+            if (m_pickupObject.gameObject.activeSelf)
+            {
+                m_pickupObject.gameObject.SetActive(false);
+            }
             return true;
         }
-
         return false;
     }
 
@@ -93,9 +108,11 @@ public class BaseTileData : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger entered by something?");
-        if (other.gameObject.GetComponent<CharacterController>() != null)
-        Debug.Log("entered");
         VisitTile();
+    }
+
+    public void AddPickupableObject()
+    {
+        m_pickupObject.gameObject.SetActive(true);
     }
 }

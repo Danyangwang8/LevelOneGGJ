@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance = null;
     [SerializeField] private TileManager m_tileManager;
+    [SerializeField] private ItemsController m_itemController;
 
     public TileManager TileManager
     {

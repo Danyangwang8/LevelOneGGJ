@@ -14,10 +14,19 @@ public class TileManager : MonoBehaviour
     private TileData m_activeTile;
     private List<BaseTileData> m_tiles = new List<BaseTileData>();
 
+    public List<BaseTileData> Tiles
+    {
+        get
+        {
+            return m_tiles;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         m_characterTransform = m_character.transform;
+        ShowUpItems();
         //foreach (var pos in m_tileMap.cellBounds.allPositionsWithin)
         //{
             //Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
@@ -45,13 +54,16 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    //private BaseTileData GetBaseTileData(Vector3Int currentPosition)
-    //{
-        //ITilemap tilemap = null;
-        //TileBase foundTile = m_tileMap.GetTile(currentPosition);
-        //foundTile.GetTileData(currentPosition, tilemap, ref m_activeTile);
-        //return m_activeTile.gameObject.GetComponent<BaseTileData>();
-    //}
+    public void ShowUpItems()
+    {
+        foreach(BaseTileData tile in m_tiles)
+        {
+            if (true)
+            {
+                tile.AddPickupableObject();
+            }
+        }
+    }
 
     public void AddTileToManager(BaseTileData tileData)
     {
