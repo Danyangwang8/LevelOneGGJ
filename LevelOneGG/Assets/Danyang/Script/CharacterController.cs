@@ -34,16 +34,19 @@ public class CharacterController : MonoBehaviour
         moveHorizontal = Input.GetAxis("Horizontal");
         moveVertical = Input.GetAxis("Vertical");
 
-        Vector2 forwardDirection = character.transform.TransformDirection(Vector2.down);
+        Vector2 forwardDirection = character.transform.TransformDirection(Vector2.up);
         Vector2 moveForward = moveVertical * forwardDirection * Time.deltaTime;
         Vector2 rightDirection = character.transform.TransformDirection(Vector2.right);
         Vector2 moveRight = moveHorizontal * rightDirection * Time.deltaTime;
 
         moveTo = moveForward + moveRight;
 
-
     }
     void CharacterPickUpController()
+    {
+        
+    }
+    void AnimaitonController()
     {
         
     }
