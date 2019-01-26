@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickup : TileContent
+public class Pickup : MonoBehaviour
 {
 
     public float Value = 5;
-    // Start is called before the first frame update
+    
     private void Awake()
     {
-        ContentType = TileContentType.Pickup;
+        //ContentType = TileContentType.Pickup;
     }
     void Start()
     {
@@ -20,5 +20,10 @@ public class Pickup : TileContent
     void Update()
     {
         
+    }
+
+    public void PickupObject()
+    {
+        gameObject.SetActive(false);
     }
 }
