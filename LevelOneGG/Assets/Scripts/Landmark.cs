@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Landmark : TileContent
+public class Landmark : MonoBehaviour
 {
 
     // Start is called before the first frame update
@@ -10,7 +10,7 @@ public class Landmark : TileContent
 
     private void Awake()
     {
-        ContentType = TileContentType.Landmark;
+        //ContentType = TileContentType.Landmark;
     }
 
     void Start()
