@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbd5d8a70c445a6488a268b845f37ecd, type: 3}
-  m_Name: New Prefab Tile
+  m_Name: HouseDoorPrefap2
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 0}
-  Prefab: {fileID: 0}
+  Sprite: {fileID: 21300010, guid: b21bdab274dea41099943ba4f0bfbd19, type: 3}
+  Prefab: {fileID: 1503892236578099325, guid: 05f1289598e29457aad51f09020a570e, type: 3}
