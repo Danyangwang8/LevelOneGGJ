@@ -588,6 +588,16 @@ Tilemap:
         type: 3}
       m_TileFlags: 0
       m_ColliderType: 0
+  - first: {x: -6, y: 3, z: 0}
+    second:
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 3990556628376118745, guid: 6545becfa3f44604da25cf6189002d55,
+        type: 3}
+      m_TileFlags: 0
+      m_ColliderType: 0
   - first: {x: -3, y: 3, z: 0}
     second:
       m_TileIndex: 1
@@ -662,6 +672,16 @@ Tilemap:
     second:
       m_TileIndex: 7
       m_TileSpriteIndex: 7
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 3990556628376118745, guid: 6545becfa3f44604da25cf6189002d55,
+        type: 3}
+      m_TileFlags: 0
+      m_ColliderType: 0
+  - first: {x: -6, y: 4, z: 0}
+    second:
+      m_TileIndex: 2
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 3990556628376118745, guid: 6545becfa3f44604da25cf6189002d55,
@@ -750,8 +770,8 @@ Tilemap:
       m_ColliderType: 0
   - first: {x: -6, y: 5, z: 0}
     second:
-      m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileIndex: 1
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 3990556628376118745, guid: 6545becfa3f44604da25cf6189002d55,
@@ -802,16 +822,6 @@ Tilemap:
     second:
       m_TileIndex: 15
       m_TileSpriteIndex: 21
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 3990556628376118745, guid: 6545becfa3f44604da25cf6189002d55,
-        type: 3}
-      m_TileFlags: 0
-      m_ColliderType: 0
-  - first: {x: -6, y: 6, z: 0}
-    second:
-      m_TileIndex: 2
-      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 3990556628376118745, guid: 6545becfa3f44604da25cf6189002d55,
@@ -892,16 +902,6 @@ Tilemap:
     second:
       m_TileIndex: 3
       m_TileSpriteIndex: 3
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 3990556628376118745, guid: 6545becfa3f44604da25cf6189002d55,
-        type: 3}
-      m_TileFlags: 0
-      m_ColliderType: 0
-  - first: {x: -6, y: 7, z: 0}
-    second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 3990556628376118745, guid: 6545becfa3f44604da25cf6189002d55,
