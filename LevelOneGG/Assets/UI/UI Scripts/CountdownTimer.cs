@@ -21,7 +21,7 @@ public class CountdownTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gM.m_exploreTimer == 0) 
+        if(gM.m_exploreTimer <= 0.2) 
         {
             playerAud1.Play();
         }
@@ -31,6 +31,7 @@ public class CountdownTimer : MonoBehaviour
         }
         else
         {
+            playerAud1.Stop();
             timer.text = "time left: " + gM.m_returnTimer.ToString("F2");
         }
     }
