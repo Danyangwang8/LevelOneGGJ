@@ -15,12 +15,14 @@ public class CharacterController : MonoBehaviour
     private Vector2 characterPos;
 
     private Rigidbody2D rb2D;
-
+    private AudioSource playerAud;
+    //public AudioClip walkClip;
 
     void Start()
     {
         character = GameObject.FindGameObjectWithTag("Player");
         rb2D = character.GetComponent<Rigidbody2D>();
+        playerAud = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,13 +30,27 @@ public class CharacterController : MonoBehaviour
     {
         CharacterMoveController();
         rb2D.MovePosition(rb2D.position + moveTo * moveSpeed);
-        if(moveHorizontal == 0f & moveVertical == 0f)
-         { 
-         gameObject.GetComponent<Animator>().SetBool("Walking", false);
-          } else
-           { gameObject.GetComponent<Animator>().SetBool("Walking", true); }
+
+        if (moveHorizontal == 0f & moveVertical == 0f)
+        {
+            playerAud.Stop();
+            gameObject.GetComponent<Animator>().SetBool("Walking", false);
+
+        } else
+        {
+            if (playerAud.isPlaying == false) 
+            { playerAud.Play(); }
+            gameObject.GetComponent<Animator>().SetBool("Walking", true);
+            //playerAud.clip = walkClip;
+
+          }
+        if (moveHorizontal >= 0 )
+        {
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
+        } else if (moveHorizontal <= 0) 
+        { gameObject.transform.localScale = new Vector3(-1, 1, 1); }
     }
-    void CharacterMoveController()
+    void CharacterMoveController() 
     {
         moveHorizontal = Input.GetAxis("Horizontal");
         moveVertical = Input.GetAxis("Vertical");
