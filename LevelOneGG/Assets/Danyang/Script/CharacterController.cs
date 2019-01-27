@@ -28,6 +28,11 @@ public class CharacterController : MonoBehaviour
     {
         CharacterMoveController();
         rb2D.MovePosition(rb2D.position + moveTo * moveSpeed);
+        if(moveHorizontal == 0f & moveVertical == 0f)
+         { 
+         gameObject.GetComponent<Animator>().SetBool("Walking", false);
+          } else
+           { gameObject.GetComponent<Animator>().SetBool("Walking", true); }
     }
     void CharacterMoveController()
     {
