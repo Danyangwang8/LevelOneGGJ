@@ -106,6 +106,7 @@ public class BaseTileData : MonoBehaviour
         if (!BlockedByLandmark)
         {
             m_pickupObject.gameObject.SetActive(true);
+            m_pickupObject.GetComponent<Pickup>().CreatObjectWithDifSprite();
         }
     }
 

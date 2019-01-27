@@ -37,7 +37,7 @@ public class TileManager : MonoBehaviour
     {
         Initialized = true;
 
-        ShowUpItems();
+        //ShowUpItems();
         int countUnblockedTiles = 0;
         int countBlockedTiles = 0;
         foreach (var pos in m_baseTileMap.cellBounds.allPositionsWithin)
@@ -79,22 +79,22 @@ public class TileManager : MonoBehaviour
         //BaseTileData activeTileData = GetBaseTileData(currentPosition);
         //activeTileData.VisitTile();
 
-        if (Input.GetButton("Test"))
-        {
-            ActivateMaze();
-        }
+        //if (Input.GetButton("Test"))
+        //{
+        //    ActivateMaze();
+        //}
     }
 
-    public void ShowUpItems()
-    {
-        foreach(BaseTileData tile in m_tiles)
-        {
-            if (!tile.BlockedByLandmark)
-            {
-                tile.AddPickupableObject();
-            }
-        }
-    }
+    //public void ShowUpItems()
+    //{
+        //foreach(BaseTileData tile in m_tiles)
+        //{
+            //if (!tile.BlockedByLandmark)
+            //{
+                //tile.AddPickupableObject();
+            //}
+        //}
+    //}
 
     public void AddTileToManager(BaseTileData tileData)
     {

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ItemsController : MonoBehaviour
 {
-    private Pickup pickup;
     private int R_Num = 10;
+
+    private bool pickupsCreated = false;
+
 
 
     private void Start()
@@ -19,26 +21,23 @@ public class ItemsController : MonoBehaviour
     }
 private void Update()
     {
+        if (!pickupsCreated)
         CreatePickupObjec();
     }
 
     void CreatePickupObjec()
     {
-        
-        for (int i = 0; i < pickup.pickupNums;i++)
-        {
+        pickupsCreated = true;
             foreach (BaseTileData tile in GameManager.instance.TileManager.Tiles)
             {
                 int j = Random.Range(0, 15);
                 if(R_Num == j)
                 {
                     tile.AddPickupableObject();
-                    pickup.CreatObjectWithDifSprite();
+                    
                 }
 
             }
-
-        }
 
     }
 

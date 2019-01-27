@@ -6,9 +6,7 @@ public class Pickup : MonoBehaviour
 {
 
     public float Value = 5;
-    private GameObject pickups;
 
-    [HideInInspector]
     public List<Sprite> sprites;
 
     [HideInInspector]
@@ -25,28 +23,18 @@ public class Pickup : MonoBehaviour
     }
     void Start()
     {
-        pickups.GetComponent<BoxCollider2D>().isTrigger = true;
-        sprites = new List<Sprite>();
-        sprites.Add(Resources.Load<Sprite>("BBottle"));
-        sprites.Add(Resources.Load<Sprite>("BBox"));
-        sprites.Add(Resources.Load<Sprite>("BCap"));
-        sprites.Add(Resources.Load<Sprite>("ClosedBag"));
-        sprites.Add(Resources.Load<Sprite>("Gbottle"));
-        sprites.Add(Resources.Load<Sprite>("Guitar"));
-        sprites.Add(Resources.Load<Sprite>("Layer 21"));
-        sprites.Add(Resources.Load<Sprite>("OpenBag"));
-        sprites.Add(Resources.Load<Sprite>("SkateB"));
+        gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int j = 0; j < pickupNums;j++)
-        {
-            CreatObjectWithDifSprite();
-        }
+        //for (int j = 0; j < pickupNums;j++)
+        //{
+            //CreatObjectWithDifSprite();
+        //}
        
-        PickupObject();
+        //PickupObject();
     }
     public void CreatObjectWithDifSprite()
     {
@@ -55,14 +43,13 @@ public class Pickup : MonoBehaviour
         spritesNum = sprites.Count;
  
         int i = Random.Range(0, spritesNum);
-        pickups.GetComponent<SpriteRenderer>().sprite = sprites[i];
-        tileManager.ShowUpItems();
+        gameObject.GetComponent<SpriteRenderer>().sprite = sprites[i];
     }
 
     public void PickupObject()
     {
         isPickup = true;
-        pickups.SetActive(false);
+        gameObject.SetActive(false);
         pickupNums--;
     }
 
