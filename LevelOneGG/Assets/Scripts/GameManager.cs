@@ -15,16 +15,21 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TileManager m_tileManager;
     [SerializeField] private ItemsController m_itemController;
-    [SerializeField] private GameObject m_character;
+    [SerializeField] private CharacterController m_characterController;
     [SerializeField] private BoxCollider2D returnPoint;
     [SerializeField] private Transform m_startPoint;
     [SerializeField] private GameObject m_returningLayover;
     [SerializeField] private GameObject m_returnSuccessObject;
     [SerializeField] private GameObject m_returnFailureObject;
+    [SerializeField] public Collected inventory; 
 
     private float m_exploreTimer = 30f;
 
+    private float m_exploreTimerDefault = 30f;
+
     private float m_returnTimer = 20f;
+
+    private float m_returnTimerDefault = 20f;
 
     private GameState m_gameState = GameState.WaitingToStart;
 
@@ -58,7 +63,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+        ResetGame();
     }
 
     // Update is called once per frame
@@ -70,7 +75,7 @@ public class GameManager : MonoBehaviour
         }
         if (m_gameState == GameState.WaitingToStart)
         {
-            if (Input.anyKey)
+            if (Input.GetKeyDown("enter") || Input.GetKeyDown("return"))
             {
                 StartExploring();
             }
@@ -86,14 +91,18 @@ public class GameManager : MonoBehaviour
         else if (m_gameState == GameState.Returning)
         {
             m_returnTimer -= Time.deltaTime;
+            if (m_returnTimer <= 0)
+            {
+                OnReturnFailure();
+            }
         }
     }
 
     public void ResetGame()
     {
-        m_exploreTimer = 5f;
-        m_returnTimer = 5f;
-        m_character.transform.position = m_startPoint.position;
+        m_exploreTimer = m_exploreTimerDefault;
+        m_returnTimer = m_returnTimerDefault;
+        m_characterController.gameObject.transform.position = m_startPoint.position;
         m_gameState = GameState.WaitingToStart;
     }
 
@@ -109,7 +118,7 @@ public class GameManager : MonoBehaviour
     public void FinishReturnPhase()
     {
         m_returningLayover.SetActive(false);
-        m_character.SetActive(false);
+        m_characterController.Active = false;
     }
 
     public void OnReturnSuccess()
@@ -135,9 +144,15 @@ public class GameManager : MonoBehaviour
 
     public void StartExploring()
     {
+        TileManager.DeactivateMaze();
         m_returnFailureObject.SetActive(false);
         m_returnSuccessObject.SetActive(false);
-        m_character.SetActive(true);
+        m_characterController.Active = true;
         m_gameState = GameState.Exploring;
+    }
+
+    public void CollectItem(Sprite sprite)
+    {
+        inventory.AddItem(sprite);
     }
 }

@@ -122,4 +122,12 @@ public class TileManager : MonoBehaviour
             tileData.AddWall();
         }
     }
+
+    public void DeactivateMaze()
+    {
+        foreach (BaseTileData tileData in m_tiles)
+        {
+            tileData.RemoveWall();
+        }
+    }
 }

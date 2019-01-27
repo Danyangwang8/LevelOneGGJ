@@ -16,6 +16,7 @@ public class CharacterController : MonoBehaviour
 
     private Rigidbody2D rb2D;
     private AudioSource playerAud;
+    public bool Active = false;
     //public AudioClip walkClip;
 
     void Start()
@@ -28,6 +29,10 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!Active)
+        {
+            return;
+        }
         CharacterMoveController();
         rb2D.MovePosition(rb2D.position + moveTo * moveSpeed);
 
@@ -62,6 +67,11 @@ public class CharacterController : MonoBehaviour
 
         moveTo = moveForward + moveRight;
 
+    }
+
+    public void SetControllerActive(bool active)
+    {
+        Active = false;
     }
     void CharacterPickUpController()
     {

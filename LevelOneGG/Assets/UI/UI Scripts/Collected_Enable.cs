@@ -24,8 +24,15 @@ public class Collected_Enable : MonoBehaviour
     }
     public void onOpen() 
     {
-        Debug.Log(coll.items_Collected[itemnumber]);
-        gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(coll.items_Collected[itemnumber]);
+        //Debug.Log(coll.items_Collected[itemnumber]);
+        //gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(coll.items_Collected[itemnumber]);
     }
+
+    public void AddItem(Sprite sprite)
+    {
+        gameObject.SetActive(true);
+        gameObject.GetComponent<Image>().sprite = sprite;
+    }
+
 
 }

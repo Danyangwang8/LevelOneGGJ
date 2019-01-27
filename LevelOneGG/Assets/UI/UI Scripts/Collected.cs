@@ -6,12 +6,16 @@ public class Collected : MonoBehaviour
 {
     public int ggg = 0;
     public string[] items_Collected = { "BCap", "Guitar", "GBottle", "BBox","SkateB","BBottle" };
-    private Component ggl;
+    private Collected_Enable[] ggl;
 
     // Start is called before the first frame update
     void Start()
     {
-        ggl = gameObject.GetComponentInChildren<Collected_Enable>();
+        ggl = gameObject.GetComponentsInChildren<Collected_Enable>();
+        foreach (Collected_Enable collected in ggl)
+        {
+            collected.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -26,5 +30,27 @@ public class Collected : MonoBehaviour
        // {
        //     ggl.onOpen();
        // }
+    }
+
+    public void AddItem(Sprite sprite)
+    {
+        foreach (Collected_Enable collected in ggl)
+        {
+            if (collected.isActiveAndEnabled)
+            {
+                continue;
+            }
+            collected.AddItem(sprite);
+            break;
+        }
+    }
+
+
+    public void ResetInventory()
+    {
+        foreach (Collected_Enable collected in ggl)
+        {
+            collected.gameObject.SetActive(false);
+        }
     }
 }

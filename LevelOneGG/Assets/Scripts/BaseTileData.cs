@@ -11,6 +11,7 @@ public class BaseTileData : MonoBehaviour
     [SerializeField] private Pickup m_pickupObject;
 
     public bool BlockedByLandmark = false;
+    public bool HasWall = false;
 
     public enum TileContentType
     {
@@ -113,5 +114,10 @@ public class BaseTileData : MonoBehaviour
     public void SetBlockedByLandmark()
     {
         BlockedByLandmark = true;
+    }
+
+    public void RemoveWall()
+    {
+        m_wallObject.SetActive(false);
     }
 }

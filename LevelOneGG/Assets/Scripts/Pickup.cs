@@ -50,6 +50,7 @@ public class Pickup : MonoBehaviour
     {
         isPickup = true;
         gameObject.SetActive(false);
+        GameManager.instance.CollectItem(gameObject.GetComponent<SpriteRenderer>().sprite);
         pickupNums--;
     }
 
