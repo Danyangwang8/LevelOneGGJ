@@ -23,11 +23,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject m_returnFailureObject;
     [SerializeField] public Collected inventory; 
 
-    private float m_exploreTimer = 30f;
+    public float m_exploreTimer = 30f;
 
     private float m_exploreTimerDefault = 30f;
 
-    private float m_returnTimer = 20f;
+    public float m_returnTimer = 20f;
 
     private float m_returnTimerDefault = 20f;
 
