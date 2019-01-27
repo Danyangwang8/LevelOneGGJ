@@ -15,6 +15,8 @@ public class TileManager : MonoBehaviour
     private TileData m_activeTile;
     private List<BaseTileData> m_tiles = new List<BaseTileData>();
 
+    public bool Initialized = false;
+
     public List<BaseTileData> Tiles
     {
         get
@@ -27,19 +29,44 @@ public class TileManager : MonoBehaviour
     void Start()
     {
         m_characterTransform = m_character.transform;
+
+    }
+
+    public void Initialize()
+    {
+        Initialized = true;
+
         ShowUpItems();
+        int countUnblockedTiles = 0;
+        int countBlockedTiles = 0;
         foreach (var pos in m_baseTileMap.cellBounds.allPositionsWithin)
         {
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
             Vector3 place = m_baseTileMap.CellToWorld(localPlace);
             if (m_baseTileMap.HasTile(localPlace))
             {
-                AddTileToManager(GetBaseTileData(localPlace));
+                Debug.Log("Base tile found at:" + localPlace);
+                BaseTileData tileData = GetBaseTileData(localPlace);
+                if (tileData != null)
+                {
+                    AddTileToManager(tileData);
+                }
+                //AddTileToManager(GetBaseTileData(localPlace));
                 if (m_landmarkTileMap.HasTile(localPlace))
                 {
+                    countBlockedTiles++;
+                    Debug.Log(localPlace + " contains a landmark");
                     Tiles[Tiles.Count - 1].SetBlockedByLandmark();
                 }
-                
+                else
+                {
+                    countUnblockedTiles++;
+                    Tiles[Tiles.Count - 1].SetNotBlockedByLandmark();
+                    Debug.Log(localPlace + " does NOT contain a landmark");
+
+                }
+
+                Debug.Log("Blocked tiles: " + countBlockedTiles + ", Unblocked tiles: " + countUnblockedTiles);
             }
         }
     }
@@ -53,10 +80,7 @@ public class TileManager : MonoBehaviour
 
         if (Input.GetButton("Test"))
         {
-            foreach (BaseTileData tileData in m_tiles)
-            {
-                tileData.AddWall();
-            }
+            ActivateMaze();
         }
     }
 
@@ -82,9 +106,19 @@ public class TileManager : MonoBehaviour
         TileBase foundTile = m_baseTileMap.GetTile(currentPosition);
         if (foundTile.GetType() == typeof(PrefabTile))
         {
-            int a = 2;
+            PrefabTile tile = foundTile as PrefabTile;
+            return tile.GetBaseTileObject(currentPosition).GetComponent<BaseTileData>();
         }
-        foundTile.GetTileData(currentPosition, tilemap, ref m_activeTile);
-        return m_activeTile.gameObject.GetComponent<BaseTileData>();
+        //foundTile.GetTileData(currentPosition, tilemap, ref m_activeTile);
+        //return m_activeTile.gameObject.GetComponent<BaseTileData>();
+        return null;
+    }
+
+    public void ActivateMaze()
+    {
+        foreach (BaseTileData tileData in m_tiles)
+        {
+            tileData.AddWall();
+        }
     }
 }

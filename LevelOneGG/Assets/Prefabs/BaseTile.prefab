@@ -93,6 +93,7 @@ MonoBehaviour:
   m_collider: {fileID: 5934588007219845713}
   m_wallObject: {fileID: 8320230146080428471}
   m_pickupObject: {fileID: 4918282299588312484}
+  BlockedByLandmark: 0
   ContentType: 4
   TileVisited: 0
 --- !u!61 &5934588007219845713
@@ -132,7 +133,6 @@ GameObject:
   - component: {fileID: 3038293513790858111}
   - component: {fileID: 7025723396564328901}
   - component: {fileID: 8994981967701260384}
-  - component: {fileID: 818280322753636459}
   m_Layer: 0
   m_Name: WallObject
   m_TagString: Untagged
@@ -228,24 +228,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 200, y: 200}
   m_EdgeRadius: 0
---- !u!50 &818280322753636459
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8320230146080428471}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

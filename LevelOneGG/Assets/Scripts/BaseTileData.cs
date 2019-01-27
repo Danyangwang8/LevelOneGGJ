@@ -39,7 +39,7 @@ public class BaseTileData : MonoBehaviour
     {
         m_collider.isTrigger = true;
         ResetTileData();
-        AddSelfToManager();
+        //AddSelfToManager();
     }
 
     private void AddSelfToManager()
@@ -73,19 +73,32 @@ public class BaseTileData : MonoBehaviour
             }
             return true;
         }
+        else if (BlockedByLandmark)
+        {
+            Debug.Log("Tile blocked by landmark");
+        }
         return false;
+    }
+
+    internal void SetNotBlockedByLandmark()
+    {
+        BlockedByLandmark = false;
     }
 
     public void ResetTileData()
     {
         TileVisited = false;
         m_wallObject.SetActive(false);
+        //BlockedByLandmark = false;
         //m_pickupObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        VisitTile();
+        if (other.gameObject.GetComponent<CharacterController>() != null)
+        {
+            VisitTile();
+        }
     }
 
     public void AddPickupableObject()
@@ -93,7 +106,6 @@ public class BaseTileData : MonoBehaviour
         if (!BlockedByLandmark)
         {
             m_pickupObject.gameObject.SetActive(true);
-
         }
     }
 
