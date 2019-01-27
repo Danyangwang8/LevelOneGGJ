@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4291357032215612660}
   - component: {fileID: 5204663585442453383}
+  - component: {fileID: 7382478773704995057}
   m_Layer: 0
   m_Name: LandMark
   m_TagString: Untagged
@@ -57,3 +58,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 200, y: 200}
   m_EdgeRadius: 0
+--- !u!114 &7382478773704995057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3990556628376118745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f26a4f5d7254b479adc9d1b22bbc55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

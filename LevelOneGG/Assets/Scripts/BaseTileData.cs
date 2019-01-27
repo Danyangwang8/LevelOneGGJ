@@ -10,6 +10,8 @@ public class BaseTileData : MonoBehaviour
     [SerializeField] private GameObject m_wallObject;
     [SerializeField] private Pickup m_pickupObject;
 
+    public bool BlockedByLandmark = false;
+
     public enum TileContentType
     {
         Landmark,
@@ -45,31 +47,6 @@ public class BaseTileData : MonoBehaviour
         GameManager.instance.TileManager.AddTileToManager(this);
     }
 
-    public bool IsTileWalkable()
-    {
-        switch (ContentType)
-        {
-            case TileContentType.Landmark:
-                return false;
-
-            case TileContentType.Pickup:
-                return true;
-
-            case TileContentType.Wall:
-                return false;
-
-            case TileContentType.Hazard:
-                return true;
-
-            case TileContentType.Nothing:
-                return true;
-
-            default:
-                Debug.LogError("Unhandled Tilecontent");
-                return false;
-        }
-    }
-
     public void VisitTile()
     {
         if (TileVisited)
@@ -86,7 +63,7 @@ public class BaseTileData : MonoBehaviour
 
     public bool AddWall()
     {
-        if (IsTileWalkable() &&
+        if (!BlockedByLandmark &&
             !TileVisited)
         {
             m_wallObject.SetActive(true);
@@ -113,6 +90,15 @@ public class BaseTileData : MonoBehaviour
 
     public void AddPickupableObject()
     {
-        m_pickupObject.gameObject.SetActive(true);
+        if (!BlockedByLandmark)
+        {
+            m_pickupObject.gameObject.SetActive(true);
+
+        }
+    }
+
+    public void SetBlockedByLandmark()
+    {
+        BlockedByLandmark = true;
     }
 }

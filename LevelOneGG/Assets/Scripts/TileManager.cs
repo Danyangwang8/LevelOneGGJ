@@ -7,7 +7,8 @@ using UnityEngine.Tilemaps;
 public class TileManager : MonoBehaviour
 {
     //public ITilemap m_baseTileMap;
-    [SerializeField] private Tilemap m_tileMap;
+    [SerializeField] private Tilemap m_baseTileMap;
+    [SerializeField] private Tilemap m_landmarkTileMap;
     [SerializeField] private CharacterController m_character;
 
     private Transform m_characterTransform;
@@ -27,15 +28,20 @@ public class TileManager : MonoBehaviour
     {
         m_characterTransform = m_character.transform;
         ShowUpItems();
-        //foreach (var pos in m_tileMap.cellBounds.allPositionsWithin)
-        //{
-            //Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-            //Vector3 place = m_tileMap.CellToWorld(localPlace);
-            //if (m_tileMap.HasTile(localPlace))
-            //{
-                //AddTileToManager(GetBaseTileData(localPlace));
-            //}
-        //}
+        foreach (var pos in m_baseTileMap.cellBounds.allPositionsWithin)
+        {
+            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
+            Vector3 place = m_baseTileMap.CellToWorld(localPlace);
+            if (m_baseTileMap.HasTile(localPlace))
+            {
+                AddTileToManager(GetBaseTileData(localPlace));
+                if (m_landmarkTileMap.HasTile(localPlace))
+                {
+                    Tiles[Tiles.Count - 1].SetBlockedByLandmark();
+                }
+                
+            }
+        }
     }
 
     // Update is called once per frame
@@ -68,5 +74,17 @@ public class TileManager : MonoBehaviour
     public void AddTileToManager(BaseTileData tileData)
     {
         m_tiles.Add(tileData);
+    }
+
+    private BaseTileData GetBaseTileData(Vector3Int currentPosition)
+    {
+        ITilemap tilemap = null;
+        TileBase foundTile = m_baseTileMap.GetTile(currentPosition);
+        if (foundTile.GetType() == typeof(PrefabTile))
+        {
+            int a = 2;
+        }
+        foundTile.GetTileData(currentPosition, tilemap, ref m_activeTile);
+        return m_activeTile.gameObject.GetComponent<BaseTileData>();
     }
 }
