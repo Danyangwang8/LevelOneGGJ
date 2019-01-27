@@ -25,35 +25,39 @@ public class PrefabTile : UnityEngine.Tilemaps.TileBase
     {
         // Streangly the position of gameobject starts at Left Bottom point of cell and not at it center
         // TODO need to add anchor points  (vertical and horisontal (left,centre,right)(top,centre,bottom))
-        if (Application.isPlaying)
+        if (go != null)
         {
-            go.SetActive(true);
-        }
-        else
-        {
-            go.SetActive(false);
-        }
-
-        if (go.GetComponent<BaseTileData>())
-        {
-            if (!m_baseTileObjects.ContainsKey(position))
+            if (Application.isPlaying)
             {
-                m_baseTileObjects.Add(position, go);
+                go.SetActive(true);
             }
 
-            Debug.Log("Current baseTileData object count: " + m_baseTileObjects.Count);
-        }
-        else if(go.GetComponent<Landmark>())
-        {
-            if (!m_landMarkObjects.ContainsKey(position))
+            else
             {
-                m_landMarkObjects.Add(position, go);
+                go.SetActive(false);
             }
-            Debug.Log("Current landmark object count: " + m_landMarkObjects.Count);
 
+            if (go.GetComponent<BaseTileData>())
+            {
+                if (!m_baseTileObjects.ContainsKey(position))
+                {
+                    m_baseTileObjects.Add(position, go);
+                }
+
+                Debug.Log("Current baseTileData object count: " + m_baseTileObjects.Count);
+            }
+            else if (go.GetComponent<Landmark>())
+            {
+                if (!m_landMarkObjects.ContainsKey(position))
+                {
+                    m_landMarkObjects.Add(position, go);
+                }
+                Debug.Log("Current landmark object count: " + m_landMarkObjects.Count);
+
+            }
+            go.transform.position += new Vector3(100, 100, 0);
+            m_gameObject = go;
         }
-        go.transform.position += new Vector3(100,100,0);
-        m_gameObject = go;
         return true;
     }
 

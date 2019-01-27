@@ -14,7 +14,7 @@ public class TileManager : MonoBehaviour
     private Transform m_characterTransform;
     private TileData m_activeTile;
     private List<BaseTileData> m_tiles = new List<BaseTileData>();
-
+    private Pickup pickup;
     public bool Initialized = false;
 
     public List<BaseTileData> Tiles
@@ -29,7 +29,8 @@ public class TileManager : MonoBehaviour
     void Start()
     {
         m_characterTransform = m_character.transform;
-
+        m_baseTileMap.CompressBounds();
+        m_landmarkTileMap.CompressBounds();
     }
 
     public void Initialize()
@@ -88,7 +89,7 @@ public class TileManager : MonoBehaviour
     {
         foreach(BaseTileData tile in m_tiles)
         {
-            if (true)
+            if (!tile.BlockedByLandmark)
             {
                 tile.AddPickupableObject();
             }
