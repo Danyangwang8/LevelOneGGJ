@@ -21,7 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject m_returningLayover;
     [SerializeField] private GameObject m_returnSuccessObject;
     [SerializeField] private GameObject m_returnFailureObject;
-    [SerializeField] public Collected inventory; 
+    [SerializeField] public Collected inventory;
+    public GameObject startText;
+    public GameObject getbackText;
 
     public float m_exploreTimer = 30f;
 
@@ -104,6 +106,9 @@ public class GameManager : MonoBehaviour
         m_returnTimer = m_returnTimerDefault;
         m_characterController.gameObject.transform.position = m_startPoint.position;
         m_gameState = GameState.WaitingToStart;
+        startText.SetActive(true);
+        getbackText.SetActive(false);
+        inventory.ResetInventory();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -119,6 +124,7 @@ public class GameManager : MonoBehaviour
     {
         m_returningLayover.SetActive(false);
         m_characterController.Active = false;
+        m_itemController.pickupsCreated = false;
     }
 
     public void OnReturnSuccess()
@@ -140,6 +146,7 @@ public class GameManager : MonoBehaviour
         m_returningLayover.SetActive(true);
         m_gameState = GameState.Returning;
         TileManager.ActivateMaze();
+        getbackText.SetActive(true);
     }
 
     public void StartExploring()
@@ -149,6 +156,7 @@ public class GameManager : MonoBehaviour
         m_returnSuccessObject.SetActive(false);
         m_characterController.Active = true;
         m_gameState = GameState.Exploring;
+        startText.SetActive(false);
     }
 
     public void CollectItem(Sprite sprite)

@@ -6,7 +6,7 @@ public class ItemsController : MonoBehaviour
 {
     private int R_Num = 10;
 
-    private bool pickupsCreated = false;
+    public bool pickupsCreated = false;
 
 
 
@@ -19,7 +19,7 @@ public class ItemsController : MonoBehaviour
             tile.PickupObject.GetComponent<BoxCollider2D>().isTrigger = true;
         }
     }
-private void Update()
+    private void Update()
     {
         if (!pickupsCreated)
         CreatePickupObjec();
