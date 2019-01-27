@@ -19,6 +19,13 @@ public class CountdownTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer.text = string.Format("time left:" + gM.m_exploreTimer);
+        if (gM.m_exploreTimer >= 0)
+        {
+            timer.text = "time left: " + gM.m_exploreTimer.ToString("F2");
+        }
+        else
+        {
+            timer.text = "time left: " + gM.m_returnTimer.ToString("F2");
+        }
     }
 }
