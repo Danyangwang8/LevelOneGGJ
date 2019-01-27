@@ -14,7 +14,7 @@ public class TileManager : MonoBehaviour
     private Transform m_characterTransform;
     private TileData m_activeTile;
     private List<BaseTileData> m_tiles = new List<BaseTileData>();
-    
+    private Pickup pickup;
     public bool Initialized = false;
 
     public List<BaseTileData> Tiles

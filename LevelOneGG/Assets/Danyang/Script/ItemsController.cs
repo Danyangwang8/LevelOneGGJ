@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ItemsController : MonoBehaviour
 {
-    public GameObject[] items;
+    private Pickup pickup;
+    private int R_Num = 10;
 
-    public float itemNumber;
 
     private void Start()
     {
@@ -17,4 +17,30 @@ public class ItemsController : MonoBehaviour
             tile.PickupObject.GetComponent<BoxCollider2D>().isTrigger = true;
         }
     }
+private void Update()
+    {
+        CreatePickupObjec();
+    }
+
+    void CreatePickupObjec()
+    {
+        
+        for (int i = 0; i < pickup.pickupNums;i++)
+        {
+            foreach (BaseTileData tile in GameManager.instance.TileManager.Tiles)
+            {
+                int j = Random.Range(0, 15);
+                if(R_Num == j)
+                {
+                    tile.AddPickupableObject();
+                    pickup.CreatObjectWithDifSprite();
+                }
+
+            }
+
+        }
+
+    }
+
+
 }
