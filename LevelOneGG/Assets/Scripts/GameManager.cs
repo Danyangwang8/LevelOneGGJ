@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject m_returnSuccessObject;
     [SerializeField] private GameObject m_returnFailureObject;
 
-    private float m_exploreTimer = 30f;
+    public float m_exploreTimer = 30f;
 
-    private float m_returnTimer = 20f;
+    public float m_returnTimer = 20f;
 
     private GameState m_gameState = GameState.WaitingToStart;
 
